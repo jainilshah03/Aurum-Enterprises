@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurum Enterprises</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      background: #e5e5e5;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #943434;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    header img {
+      height: 50px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      color: rgb(247, 247, 247);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      border-radius: 5px;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    nav ul li a:hover {
+      background: #fff;
+      color: #027373;
+    }
+    section {
+      padding: 6rem 2rem 3rem 2rem;
+      display: none;
+      min-height: 100vh;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #027373;
+    }
+    .hero {
+      background: url('1.jpeg') center/cover no-repeat;
+      color: white;
+      padding: 10rem 2rem 6rem;
+      text-align: center;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 0;
+    }
+    .hero h2, .hero p, .hero button {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .cta-btn {
+      background: #ffd700;
+      color: #333;
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .cta-btn:hover {
+      background: #e0c000;
+    }
+    .products, .network {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .strengths {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .strength-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .strength-card:hover {
+      transform: scale(1.05);
+    }
+    .strength-card i {
+      font-size: 2rem;
+      color: #027373;
+      margin-bottom: 1rem;
+    }
+    footer {
+      background: #027373;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+    footer a {
+      color: #fff;
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+    }
+    .contact-info p {
+      margin: 0.3rem 0;
+    }
+   
+    @media (max-width: 768px) {
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    .about-section {
+  background: linear-gradient(to right, #ffffff, #f4f4f4);
+  padding: 100px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+}
+
+.about-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.main-heading {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #1d3557;
+  margin-bottom: 10px;
+  animation: slideDown 1s ease-out;
+}
+
+.divider {
+  width: 80px;
+  height: 4px;
+  background: #e63946;
+  margin: 0 auto 40px auto;
+  border-radius: 2px;
+  animation: expand 1s ease-out;
+}
+
+.about-content h2 {
+  font-size: 1.6rem;
+  margin-top: 40px;
+  color: #e63946;
+  position: relative;
+}
+
+.about-content h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #f1a208;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 15px 0;
+}
+
+.about-content ul {
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+.about-content li {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+
+.about-content li:hover {
+  padding-left: 8px;
+  color: #1d3557;
+}
+
+.about-content a {
+  color: #1d3557;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-content a:hover {
+  color: #e63946;
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expand {
+  0% { width: 0; }
+  100% { width: 80px; }
+}
+
+.fade-in {
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section Styling */
+#products {
+  padding: 60px 30px;
+  background: #f9fafb;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 36px;
+  color: #1e40af;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.divider {
+  width: 100px;
+  height: 4px;
+  margin: 0 auto 40px;
+  background: #2563eb;
+  border-radius: 5px;
+  animation: expand 1s ease-out;
+}
+
+@keyframes expand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+.category-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.category-buttons button {
+  margin: 5px 10px;
+  padding: 10px 20px;
+  border: none;
+  background: #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.category-buttons button.active {
+  background: #007BFF;
+  color: white;
+}
+.product-section.hidden {
+  display: none;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.product-item {
+  background-color: #f0f4f8;
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+.product-item:hover {
+  background-color: #e0ecf8;
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#query {
+  padding: 60px 20px;
+  background-color: #fafafa;
+}
+
+#query h2 {
+  text-align: center;
+  color: #000000;
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  position: relative;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+#query form {
+  max-width: 600px;
+  margin: auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 1s ease-in-out;
+}
+
+#query label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #000;
+  font-size: 15px;
+}
+
+#query input,
+#query textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: #fdfdfd;
+}
+
+#query input:focus,
+#query textarea:focus {
+  outline: none;
+  border-color: #943434;
+  box-shadow: 0 0 5px rgba(148, 52, 52, 0.5);
+  background-color: #ffffff;
+}
+
+#query button[type="submit"] {
+  background-color: #943434;
+  color: #000000;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#query button[type="submit"]:hover {
+  background-color: #7a2c2c;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+</style>
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <img src="logo.jpg" alt="Aurum Logo">
+    <nav>
+      <ul>
+        <li><a onclick="showSection('home')">Home</a></li>
+        <li><a onclick="showSection('about')">About Us</a></li>
+        <li><a onclick="showSection('products')">Products</a></li>
+        <li><a onclick="showSection('network')">Network</a></li>
+        <li><a onclick="showSection('contact')">Contact Us</a></li>
+        <li><a onclick="showSection('query')">Any Query?</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="active">
+    <div class="hero" data-aos="fade-up">
+      <h2>Delivering Quality Medicines Raw Material Across India</h2>
+      <p>Your trusted pharmaceutical trading partner</p>
+      <br>
+      <button class="cta-btn" onclick="showSection('products')">Explore Our Products</button>
+    </div>
+    <h2 class="section-title" data-aos="fade-right">Welcome to Aurum Enterprises</h2>
+    <p data-aos="fade-up">Aurum Enterprises is a dynamic pharmaceutical trading company specializing in the import and export of high-quality medicinal powders across global markets...</p>
+    <div class="strengths">
+      <div class="strength-card" data-aos="zoom-in">
+        <i class="fas fa-certificate"></i>
+        <h3>Certified Quality</h3>
+        <p>All products meet WHO-GMP standards and national regulatory guidelines.</p>
+      </div>
+      <div class="strength-card" data-aos="zoom-in" data-aos-delay="100">
+        <i class="fas fa-truck-moving"></i>
+        <h3>Pan-India Delivery</h3>
+        <p>Fast and reliable logistics ensuring timely availability of medicines.</p>
+      </div>
+      <div class="strength-card" data-aos="zoom-in" data-aos-delay="200">
+        <i class="fas fa-handshake"></i>
+        <h3>Trusted Partnerships</h3>
+        <p>Strong relationships with top manufacturers and healthcare clients.</p>
+      </div>
+      <div class="strength-card" data-aos="zoom-in" data-aos-delay="300">
+        <i class="fas fa-flask"></i>
+        <h3>Innovative Offerings</h3>
+        <p>We continuously explore new therapies and modern healthcare solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <h1 class="main-heading">About Us</h1>
+      <div class="divider"></div>
+  
+      <div class="about-content fade-in">
+        <h2>Who We Are</h2>
+        <p>
+          At <strong>Aurum Enterprises</strong>, we are more than just a trading company — we are a global link in the pharmaceutical supply chain. Specializing in the import and export of medicinal powders, we bring life-saving ingredients from the world’s top pharmaceutical manufacturers to formulators, research labs, and healthcare companies worldwide. Our name, "Aurum" (Latin for gold), reflects our unwavering commitment to quality, value, and trust.
+        </p>
+  
+        <h2>Our Expertise</h2>
+        <p>With years of industry insight, we’ve built a network of trusted partners across Asia, Europe, Africa, and the Americas. Our team is deeply experienced in international trade, pharmaceutical compliance, and supply chain logistics.</p>
+        <ul>
+          <li>✔️ Active Pharmaceutical Ingredients (APIs)</li>
+          <li>✔️ Bulk drug powders</li>
+          <li>✔️ Therapeutic-grade formulations</li>
+          <li>✔️ Custom chemical blends</li>
+        </ul>
+  
+        <h2>Our Commitment to Quality</h2>
+        <p>Each product undergoes rigorous quality checks and is backed by globally recognized certifications:</p>
+        <ul>
+          <li>🌍 WHO-GMP</li>
+          <li>🇺🇸 US FDA</li>
+          <li>📄 ISO 9001:2015</li>
+          <li>🧾 COA & MSDS documentation</li>
+        </ul>
+  
+        <h2>Our Mission</h2>
+        <ul>
+          <li>🤝 Build long-term, transparent partnerships</li>
+          <li>💰 Offer competitive pricing without compromising quality</li>
+          <li>🚚 Ensure timely delivery with real-time tracking</li>
+        </ul>
+  
+        <h2>Our Vision</h2>
+        <p>To be a globally respected pharmaceutical trading company known for integrity, innovation, and impact—contributing to a world where everyone has access to better health.</p>
+  
+        <h2>Why Choose Us?</h2>
+        <ul>
+          <li>🌐 Global Network of trusted suppliers & distributors</li>
+          <li>📑 Full Regulatory Compliance</li>
+          <li>📦 Tailored Packaging & Sourcing</li>
+          <li>🚛 Transparent Logistics Support</li>
+          <li>🎯 Client-Centric Business Approach</li>
+        </ul>
+  
+        <h2>Connect with Us</h2>
+        <p>
+          Whether you're a manufacturer, distributor, or research institution — Aurum Enterprises is ready to help you scale with confidence.<br><br>
+          📍 Location: <em>Indore/Madhya Pradesh</em><br>
+          📞 Contact: <em>+91 9301511265/ +91 9575045333</em><br>
+          ✉️ Email: <a href="mailto:mitinshah@rediffmail.com">mitinshah@rediffmail.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="products" class="section reveal" style="display: none;">
+    <br>
+    <h2 class="section-title">Product Categories</h2>
+    <div class="divider"></div>
+    
+    <div class="category-buttons">
+      <button onclick="showCategory('api')" id="apiBtn" class="active">API Products</button>
+      <button onclick="showCategory('sterile')" id="sterileBtn">Sterile Products</button>
+      <button onclick="showCategory('hormones')" id="hormonesBtn">Hormones Products</button>
+    </div>
+    
+    <!-- API Products -->
+    <div id="apiSection" class="product-section">
+      <input type="text" id="searchInput" placeholder="Search API product..." />
+      <div id="productList" class="product-grid"></div>
+    </div>
+    
+    <!-- Sterile Products -->
+    <div id="sterileSection" class="product-section hidden">
+      <input type="text" id="sterileSearchInput" placeholder="Search sterile product..." />
+      <div id="sterileProductList" class="product-grid"></div>
+    </div>
+
+    <div id="hormonesSection" class="product-section hidden">
+      <input type="text" id="hormonesSearchInput" placeholder="Search hormones product..." />
+      <div id="hormonesProductList" class="product-grid"></div>
+    </div>
+    
+    
+  </section>
+  
+  
+  
+  <section id="network">
+    <h2 class="section-title" data-aos="fade-left">Our Network</h2>
+    <div class="network">
+      <div class="card" data-aos="flip-left">North India Distribution Hub</div>
+      <div class="card" data-aos="flip-left" data-aos-delay="100">West India Logistics Team</div>
+      <div class="card" data-aos="flip-left" data-aos-delay="200">South India Retail Connect</div>
+      <div class="card" data-aos="flip-left" data-aos-delay="300">East India Expansion Zone</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title" data-aos="zoom-in">Contact Us</h2>
+    <div class="contact-info" data-aos="fade-up">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.301396195621!2d75.87438387553502!3d22.71703627938909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd007a542929%3A0x3679d1077c2c55a8!2sFortune%20Ambience!5e0!3m2!1sen!2sin!4v1744363810402!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              width="100%"
+              height="250"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+      <p><strong>Email:</strong> mitinshah@rediffmail.com</p>
+      <p><strong>Phone:</strong> +91-9301511265</p>
+      <p><strong>Whatsapp:</strong> +91-9575045333</p>
+      <p><strong>Address:</strong> Fortune ambiance, 111, 4/2, near hotel Surya Dhakkanwala kua, South Tukoganj, Indore, Madhya Pradesh 452001, India</p>
+    </div>
+  </section>
+
+  <section id="query" style="padding: 60px 20px; background-color: #fafafa;">
+    <br>
+    <br>
+    <br>
+    <h2 style="text-align: center; color:#000000; font-size: 32px; margin-bottom: 30px;" data-aos="fade-up">
+      Any Query?
+    </h2>
+  
+    <form id="queryForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Phone Number" id="phone" required>
+      <textarea name="message" placeholder="Your Query" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    
+    <p id="responseMsg"></p>
+    
+    
+  </section>
+  
+  
+
+  <footer>
+    <p>&copy; 2025 Aurum Enterprises. All rights reserved.</p>
+    <div>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function showSection(sectionId) {
+  // Hide all sections
+  document.querySelectorAll("section").forEach((section) => {
+    section.style.display = "none";
+  });
+
+  // Show only the selected section
+  const selected = document.getElementById(sectionId);
+  selected.style.display = "block";
+
+  // If the section has reveal animation (optional)
+  if (selected.classList.contains("reveal")) {
+    selected.classList.add("active");
+  }
+
+  // Load products only when product section is shown
+  if (sectionId === "products") {
+    displayProducts(products);
+  }
+}
+
+
+  </script>
+
+<script>
+  const apiProducts = [
+    "ACECLOFENAC", "ADAPLINE", "ALBENDAZOLE", "ALPHA BETA ARTEETHER", "AMBROXOL", "ARTEMETHER",
+    "ATENOLOL", "ATORVASTATIN CALCIUM", "AZITHROMYCIN INDIAN 5/10/25", "BECLOMETHASONE DIPROPIONATE",
+    "BETAMETHASONE SODIUM PHOSPHATE", "BISOPROLOL FUMARATE", "CETIRIZINE IP / EP", "CHLORAMPHENICOL",
+    "CHLORZOXAZONE", "CIPROFLOXACIN", "CLINDAMYCIN PHOSPHATE", "CLOBETASOLE PROPIONATE", "CPM",
+    "DEFLAZACORT", "DEXA PLAIN / SODIUM", "DICLO SODIUM / POTASSIUM / DDA", "DICYCLOMINE", "DMR",
+    "DOMPERIDONE", "DOXOPHYLLINE", "ENROFLOXACIN INDIAN/CHINA", "ERYTHROMYCIN STEARATE/ESTOLATE",
+    "ETORICOXIB", "FEBUXOSTAT", "FOLIC ACID IP", "FRUSAMIDE", "GAMMABENZENE HEXACHLORIDE", "GUAIPHENESIN",
+    "HYOSCINE BUTYL BROMIDE", "ISOTRETINOIN", "KETOKANAZOLE", "LOPERAMIDE", "LULICONAZOLE", "LUMEFANTRINE",
+    "MEBENDAZOLE", "MEENAMIC AICD", "METHYL COBALAMINE JP", "METHYL PREDNISOLONE", "METRO BENZOATE (MBO)",
+    "METRONIDAZOLE", "MOMENTAZOLE FUROATE", "NIACINAMIDE", "NIMESULIDE", "NORETHISTERONE", "OXYTETRACYCLINE",
+    "PARACETAMOL", "PHENYL BUTAZONE", "PIROXICAM", "PREGABALIN", "QUININE SULPHATE / DI HYDRO",
+    "ROSUVASTATIN CALCIUM", "SERRATIOPEPTIDASE PLAIN/COATED", "SUCRALFATE", "TELMISERTAN",
+    "THIOCOLCHICOSIDE", "TINIDAZOLE", "TRAMADOL", "TRIAMCINOLONE ACETONIDE"
+  ];
+
+  const sterileProducts = [
+    "AMOXICILLINE SODIUM STERILE", "AMPICILLIN SODIUM STERILE", "ARTESUNATE STERILE",
+    "CEFTRIAXONE SODIUM STERILE", "CLOXACILLIN SODIUM STERILE", "DICLOXACILLIN SODIUM STERILE",
+    "ESOMEPRAZOLE SODIUM STERILE", "FLUCLOXACILLIN SODIUM STERILE", "LANSOPRAZOLE SODIUM STERILE",
+    "MEROPENEM STERILE", "OMEPRAZOLE SODIUM STERILE", "OXACILLIN SODIUM STERILE",
+    "PANTAPRAZOLE SODIUM STERILE", "RABEPRAZOLE SODIUM STERILE", "SULBACTAM SODIUM STERILE"
+  ];
+
+  const hormonesProducts = [
+  "17A-HYDROXY PROGESTERONE CAPROATE (HPC)", "CYPROTERONE ACETATE", "DANAZOLE", "DESOGESTREL", "DINOGEST",
+  "DROSPIRENONE", "ESTRADIOL BENSOATE", "ESTRADIOL", "ESTRADIOL HEMI HYDRATE", "ESTRADIOL VALARATE",
+  "ETHINYL ESTRADIOL", "GESTODENE", "LEVONORGESTREL", "MEDROXY PROGESTERONE ACETATE", "MELATONIN",
+  "METHYLTESTOSTERONE", "MIFEPRISTONE", "NANDROLONE", "NANDROLONE DECANOATE", "NANDROLONE PHENYLPROPIONATE",
+  "NORETHISTERONE", "NORETHISTERONE ACETATE", "NORETHISTERONE BASE", "NORETHISTERONE ENANTATE PROGESTERONE",
+  "TESTOSTERONE", "TESTOSTERONE ACETATE", "TESTOSTERONE CYPIONATE", "TESTOSTERONE DECANOATE",
+  "TESTOSTERONE ENANTHATE", "TESTOSTERONE ISOCAPROATE", "TESTOSTERONE PHENYLPROPIONATE",
+  "TESTOSTERONE PROPIONATE", "TESTOSTERONE UNDECANOATE", "TIBOLONE", "ULIPRISTAL", "ULIPRISTAL ACETATE"
+];
+
+  const apiSection = document.getElementById("apiSection");
+  const sterileSection = document.getElementById("sterileSection");
+  const hormonesSection = document.getElementById("hormonesSection");
+  const apiBtn = document.getElementById("apiBtn");
+  const sterileBtn = document.getElementById("sterileBtn");
+  const hormonesBtn = document.getElementById("hormonesBtn");
+
+  const productList = document.getElementById("productList");
+  const sterileProductList = document.getElementById("sterileProductList");
+  const hormonesProductList = document.getElementById("hormonesProductList");
+
+  function displayList(data, container) {
+    container.innerHTML = "";
+    data.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "product-item";
+      div.textContent = item;
+      container.appendChild(div);
+    });
+  }
+
+  // Initial display
+  displayList(apiProducts, productList);
+  displayList(sterileProducts, sterileProductList);
+  displayList(hormonesProducts, hormonesProductList);
+
+  // Search functionality
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    const filtered = apiProducts.filter(p =>
+      p.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    displayList(filtered, productList);
+  });
+
+  document.getElementById("sterileSearchInput").addEventListener("input", (e) => {
+    const filtered = sterileProducts.filter(p =>
+      p.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    displayList(filtered, sterileProductList);
+  });
+
+  document.getElementById("hormonesSearchInput").addEventListener("input", (e) => {
+    const filtered = hormonesProducts.filter(p =>
+      p.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    displayList(filtered, hormonesProductList);
+  });
+
+  // Toggle between categories
+  function showCategory(type) {
+  if (type === "api") {
+    apiSection.classList.remove("hidden");
+    sterileSection.classList.add("hidden");
+    hormonesSection.classList.add("hidden");
+
+    apiBtn.classList.add("active");
+    sterileBtn.classList.remove("active");
+    hormonesBtn.classList.remove("active");
+  } else if (type === "sterile") {
+    apiSection.classList.add("hidden");
+    sterileSection.classList.remove("hidden");
+    hormonesSection.classList.add("hidden");
+
+    apiBtn.classList.remove("active");
+    sterileBtn.classList.add("active");
+    hormonesBtn.classList.remove("active");
+  } else if (type === "hormones") {
+    apiSection.classList.add("hidden");
+    sterileSection.classList.add("hidden");
+    hormonesSection.classList.remove("hidden");
+
+    apiBtn.classList.remove("active");
+    sterileBtn.classList.remove("active");
+    hormonesBtn.classList.add("active");
+  }
+}
+</script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<script>
+  const phoneInput = document.getElementById("phone");
+
+  phoneInput.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
+
+  const form = document.querySelector("form");
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      document.getElementById("form-message").style.display = "block";
+      form.reset();
+    } else {
+      alert("Oops! Something went wrong.");
+    }
+  });
+</script>
+
+<script>
+const queryForm = document.getElementById('queryForm');
+const responseMsg = document.getElementById('responseMsg');
+
+queryForm.addEventListener('submit', function(e)  {
+  e.preventDefault();
+  console.log("Submitting form...");
+
+  const formData = {
+      name: queryForm.name.value,
+      email: queryForm.email.value,
+      phone: queryForm.phone.value,
+      message: queryForm.message.value
+    };
+
+  fetch("https://script.google.com/macros/s/AKfycbwVsjhnf86jhYsASwOMAEdyjRYzThoSCCUkCLLfTFgakCxJd-5CBypsquidt-7ty5tB/exec", {
+        method: 'POST',
+        body: JSON.stringify(formData) 
+      })
+      .then(res => res.text())
+      .then(data => {
+        console.log("Response:", data);
+        responseMsg.innerHTML = "✅ Query submitted successfully!";
+        alert("Your query is submitted. We will respond to you soon!");  
+        queryForm.reset();
+      })
+
+      .catch(err => {
+        console.error('Fetch error:', error.message);
+      responseMsg.innerHTML = "❌ Submission failed. Please try again.";
+      });
+    });
+
+</script>
+
+</body>
+</html>
